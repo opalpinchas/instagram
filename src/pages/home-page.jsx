@@ -25,6 +25,7 @@ class _HomePage extends Component {
         return (
             <div>
                <PostList posts={posts}  onUpdatePost={this. onUpdatePost}/>
+               <i className="fa-solid fa-heart"></i>
             </div>
         )
     }
