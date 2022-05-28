@@ -6,7 +6,6 @@ import { PostList } from '../cmp/post-list'
 class _HomePage extends Component {
     componentDidMount() {
         this.props.loadPosts()
-        console.log(this.props.posts);
     }
 
     onRemovePost = (postId) => {
@@ -25,7 +24,6 @@ class _HomePage extends Component {
         return (
             <div>
                <PostList posts={posts}  onUpdatePost={this. onUpdatePost}/>
-               <i className="fa-solid fa-heart"></i>
             </div>
         )
     }
