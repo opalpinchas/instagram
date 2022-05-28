@@ -37,11 +37,11 @@ function save(post) {
 function test() {
     storageService.post(STORAGE_KEY, {
         txt: "Best trip ever",
-        imgUrl: "http://some-img",
+        imgUrl: "../img/2.png",
         by: {
             _id: "u101",
             fullname: "Ulash Ulashi",
-            imgUrl: "http://some-img"
+            imgUrl: "../img/2.png"
         },
         loc: {
             lat: 11.11,
@@ -54,14 +54,14 @@ function test() {
                 by: {
                     _id: "u105",
                     fullname: "Bob",
-                    imgUrl: "http://some-img"
+                    imgUrl: "../img/2.png"
                 },
                 txt: "good one!",
                 likedBy: [
                     {
                         _id: "u105",
                         fullname: "Bob",
-                        imgUrl: "http://some-img"
+                        imgUrl: "../img/2.png"
                     }
                 ]
             }
@@ -70,7 +70,7 @@ function test() {
             {
                 _id: "u105",
                 fullname: "Bob",
-                imgUrl: "http://some-img"
+                imgUrl: "../img/2.png"
             }
         ]
     }).then(x => console.log(x))

@@ -2,9 +2,12 @@ import { connect } from "react-redux"
 import { Component } from 'react'
 import { loadPosts, removePost, savePost } from '../store/actions/post.action.js'
 import { PostList } from '../cmp/post-list'
+import { userService } from '../services/user.service.js'
 
 class _HomePage extends Component {
+   
     componentDidMount() {
+        console.log(this.props);
         this.props.loadPosts()
     }
 
@@ -13,26 +16,28 @@ class _HomePage extends Component {
     }
 
     onUpdatePost = (post) => {
-       this.props.savePost(post)
+        this.props.savePost(post)
     }
 
 
 
     render() {
-        const { posts } = this.props
-     
+        const { posts, user } = this.props
+        
+
         return (
             <div>
-               <PostList posts={posts}  onUpdatePost={this. onUpdatePost}/>
+                <PostList posts={posts} user={user} onUpdatePost={this.onUpdatePost} />
             </div>
         )
     }
-}
 
+}
 
 const mapStateToProps = (storeState) => {
     return {
-        posts: storeState.postModule.posts
+        posts: storeState.postModule.posts,
+        user: storeState.userModule.user
     }
 }
 const mapDispatchToProps = {

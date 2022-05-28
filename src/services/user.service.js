@@ -7,8 +7,7 @@ export const userService = {
     login,
     logout,
     signup,
-    getLoggedinUser,
-    updateBalance
+    getLoggedinUser
 }
 
 window.us = userService
@@ -26,21 +25,15 @@ function login(credentials) {
 
 }
 function signup(userInfo) {
-    const user = {...userInfo, balance: 10000}
+    const user = {...userInfo,
+        imgUrl: "../img/2.png",
+        createdAt: 123543452,
+        savedStoryIds: []
+    }
     return storageService.post(STORAGE_KEY, user)
         .then((user) => {
             sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
             return user
-        })
-}
-function updateBalance(diff) {
-
-    const user = userService.getLoggedinUser()
-    user.balance += diff
-    return storageService.put(STORAGE_KEY, user)
-        .then((user) => {
-            sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-            return user.balance
         })
 }
 function logout() {
@@ -53,7 +46,7 @@ function getLoggedinUser() {
 }
 
 // Test Data
-// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Ja', balance: 10000})
+// userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Ja'})
 // userService.login({username: 'muki', password: 'muki1'})
 
 

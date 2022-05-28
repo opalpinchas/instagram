@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-export function PostPreview({ post, onUpdatePost }) {
+export function PostPreview({ post, user, onUpdatePost }) {
     const [comment, setComment] = useState('')
 
     const handleChange = (ev) => {
@@ -12,9 +12,9 @@ export function PostPreview({ post, onUpdatePost }) {
     const onLikeClick = () => {
         post.likes.push(
             {
-                _id: "u105",
-                fullname: "Bob",
-                imgUrl: "http://some-img"
+                _id: user._id,
+                fullname: user.fullname,
+                imgUrl: user.imgUrl
             }
         )
 
@@ -29,9 +29,9 @@ export function PostPreview({ post, onUpdatePost }) {
             {
                 id: "c1001",
                 by: {
-                    _id: "u105",
-                    fullname: "Bob",
-                    imgUrl: "http://some-img"
+                    _id: user._id,
+                    fullname: user.fullname,
+                    imgUrl: user.imgUrl
                 },
                 txt: comment,
                 likedBy: []
