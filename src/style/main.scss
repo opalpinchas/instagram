@@ -1,4 +1,12 @@
-@import './cmp/app-header.scss';
+
+@import 'setup/variables';
+
+@import 'basics/base';
+
+
+@import 'cmp/app-header';
+@import 'cmp/post-preview';
+
 
 
 body {

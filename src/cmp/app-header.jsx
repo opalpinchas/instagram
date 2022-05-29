@@ -12,18 +12,18 @@ class _AppHeader extends Component {
     render() {
 
         return (
-            <header>
-               
-                <div>LOGO {this.props.user.fullname}</div>
-                <input type="text" placeholder="Search" />
-                <nav>
-                    <NavLink to="/home">Home</NavLink>
-                    <NavLink to="/">Add post</NavLink>
-                    <NavLink to="/">Explore</NavLink>
-                    <NavLink to="/">Profile</NavLink>
-                    <NavLink to="/" onClick={this.props.logout}>Logout</NavLink>
-
-                </nav>
+            <header className="app-header">
+                <div className="header-content">
+                    <div className="logo">LOGO</div>
+                    <input type="text" placeholder="Search" />
+                    <nav className="header-nav">
+                        <NavLink to="/home"><i className="fa-solid fa-house"></i></NavLink>
+                        <NavLink to="/"><i className="far fa-light fa-square-plus"></i></NavLink>
+                        <NavLink to="/"><i className="far fa-light fa-compass"></i></NavLink>
+                        <NavLink to="/"><i className="far fa-light fa-heart"></i></NavLink>
+                        <NavLink to="/" onClick={this.props.logout}><i className="fas fa-light fa-user"></i></NavLink>
+                    </nav>
+                </div>
             </header>
         )
     }
