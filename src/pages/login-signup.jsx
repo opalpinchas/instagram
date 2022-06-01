@@ -2,6 +2,7 @@ import { connect } from "react-redux"
 import { Component } from 'react'
 import { login, signup } from "../store/actions/user.action.js"
 
+
  class _LoginSignup extends Component {
     state = {
         credentials: {
@@ -12,8 +13,11 @@ import { login, signup } from "../store/actions/user.action.js"
         isSignup: false
     }
 
+
     componentDidMount () {
+
         if(this.props.user){
+            console.log('innn');
             window.history.pushState({}, undefined, "/home");
         }
     }

@@ -1,8 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { utilService } from "../services/util.service.js"
 
 
 export function PostPreview({ post, user, onUpdatePost }) {
     const [comment, setComment] = useState('')
+    const [isLiked, setLike] = useState(null)
+
+    useEffect(() => 
+        setLike(utilService.isLiked(post.likes, user._id))
+  )
+   
 
     const handleChange = (ev) => {
         const value = ev.target.value
@@ -10,14 +17,19 @@ export function PostPreview({ post, user, onUpdatePost }) {
     }
 
     const onLikeClick = () => {
-        post.likes.push(
-            {
-                _id: user._id,
-                fullname: user.fullname,
-                imgUrl: user.imgUrl
-            }
-        )
-
+        let idx = post.likes.findIndex(miniuser => miniuser._id === user._id)
+        if (idx === -1) {
+            post.likes.push(
+                {
+                    _id: user._id,
+                    fullname: user.fullname,
+                    imgUrl: user.imgUrl
+                }
+            )
+        } else {
+            post.likes.splice(idx, 1)
+        }
+        setLike(!isLiked)
         onUpdatePost(post)
 
     }
@@ -39,9 +51,14 @@ export function PostPreview({ post, user, onUpdatePost }) {
         )
         setComment('')
         onUpdatePost(post)
+
     }
 
+
+    const likeClassName = isLiked ? 'fas fa-thin fa-heart' : 'far fa-thin fa-heart'
+
     return (
+
         <section className="post-preview">
             <div className="user-info">
                 <div className="user-photo">
@@ -59,14 +76,14 @@ export function PostPreview({ post, user, onUpdatePost }) {
                 </div>
 
                 <div className="post-nav">
-                <i className="fas fa-thin fa-ellipsis"></i>
+                    <i className="fas fa-thin fa-ellipsis"></i>
                 </div>
             </div>
             <div className="post-img-container">
                 <img src={post.imgUrl} alt="" />
             </div>
             <div className="post-action-container">
-                <button className="post-action-btn" onClick={onLikeClick}><i className="far fa-thin fa-heart"></i></button>
+                <button className="post-action-btn" onClick={onLikeClick}><i className={likeClassName}></i></button>
                 <button className="post-action-btn"><i className="far fa-light fa-comment"></i></button>
                 <button className="post-action-btn"><i className="far fa-light fa-paper-plane"></i></button>
                 <button className="post-action-btn"><i className="far fa-light fa-bookmark"></i></button>
@@ -92,7 +109,7 @@ export function PostPreview({ post, user, onUpdatePost }) {
             </div>
             <div className="add-comment-container">
                 <div className="emoji-btn">
-                <i className="far fa-light fa-face-smile"></i>
+                    <i className="far fa-light fa-face-smile"></i>
                 </div>
                 <form className="comment-form" onSubmit={onAddComment}>
                     <input
@@ -108,34 +125,3 @@ export function PostPreview({ post, user, onUpdatePost }) {
     )
 }
 
-
-// txt: "Best trip ever",
-// imgUrl: "http://some-img",
-// by: {
-//     _id: "u101",
-//     fullname: "Ulash Ulashi",
-//     imgUrl: "http://some-img"
-// },
-// loc: {
-//     lat: 11.11,
-//     lng: 22.22,
-//     name: "Tel Aviv"
-// },
-// comments: [
-//     {
-//         id: "c1001",
-//         by: {
-//             _id: "u105",
-//             fullname: "Bob",
-//             imgUrl: "http://some-img"
-//         },
-//         txt: "good one!",
-//         likedBy: [
-//             {
-//                 _id: "u105",
-//                 fullname: "Bob",
-//                 imgUrl: "http://some-img"
-//             }
-//         ]
-//     }
-// ]

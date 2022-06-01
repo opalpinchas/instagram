@@ -8,7 +8,10 @@ class _HomePage extends Component {
    
     componentDidMount() {
         console.log(this.props);
-        this.props.loadPosts()
+        if(!this.props.posts.length){
+            this.props.loadPosts()
+        }
+        // this.props.loadPosts()
     }
 
     onRemovePost = (postId) => {
