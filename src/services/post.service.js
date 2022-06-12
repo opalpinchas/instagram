@@ -33,7 +33,13 @@ function save(post) {
 
 
 
-// test()
+
+
+
+
+
+
+test()
 // TEST DATA
 function test() {
     storageService.post(STORAGE_KEY, {

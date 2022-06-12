@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    isLiked
+    isLiked,
+    getEmptyPost
 }
 
 function makeId(length = 6) {
@@ -32,7 +33,24 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
 
-function isLiked(likes, userId){
-    const isLiked = (likes.find(miniuser =>  miniuser._id === userId)) ? true : false
-     return isLiked
+function isLiked(likes, userId) {
+    const isLiked = (likes.find(miniuser => miniuser._id === userId)) ? true : false
+    return isLiked
+}
+
+function getEmptyPost(user) {
+    console.log(user);
+    return {
+        // txt: '',
+        // imgUrl: '',
+        // by: {
+        //     _id: user._id,
+        //     fullname: user.fullname,
+        //     imgUrl: user.imgUrl
+        // },
+        // loc: {},
+        // comments: [],
+        // likes: []
+    }
+
 }
